@@ -1,0 +1,1 @@
+type ProdId = number | string;
