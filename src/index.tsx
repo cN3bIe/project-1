@@ -12,7 +12,7 @@ const store = enhancer( reducers );
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<App title="Heyy" />
 	</Provider>,
 	document.getElementById('app')
 );
