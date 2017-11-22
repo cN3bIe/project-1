@@ -14,5 +14,5 @@ ReactDOM.render(
 	<Provider store={store}>
 		<App title="Heyy" />
 	</Provider>,
-	document.getElementById('app')
+	document.getElementById('app') as HTMLElement
 );
