@@ -2,14 +2,15 @@ import * as React from 'react';
 
 
 import { connect } from 'react-redux';
-import { addProdInOrder, removeProdInOrder } from '../../actions';
+import { actionsAddProdInCard, actionsRemoveProdInCard } from '../../actions';
 import Card from '../Card';
 
 interface CatalogProps {
 	title: string;
 	prod: Prod[];
-	// addCard: () => void;
-	// removeCard: () => void;
+	card: ProdId[];
+	addProdInCard: ( id: ProdId ) => any;
+	removeProdInCard: ( id: ProdId ) => any;
 }
 
 class Catalog extends React.Component <CatalogProps>{
@@ -17,7 +18,15 @@ class Catalog extends React.Component <CatalogProps>{
 		return (
 			<div>
 				<h1>Catalog {this.props.title}</h1>
-				<div className="wr-card">{this.props.prod.map( (prod: Prod) => <Card key={prod.id} {...prod} /> )}</div>
+				<div className="wr-card">{this.props.prod.map(
+					(prod: Prod) =>
+					<Card
+						key={prod.id}
+						{...prod}
+						isOnCard={!this.props.card.some( (id: ProdId) => id === prod.id )}
+						addProdInCard={this.props.addProdInCard}
+						removeProdInCard={this.props.removeProdInCard}
+					/> )}</div>
 			</div>
 		);
 	}
@@ -25,10 +34,11 @@ class Catalog extends React.Component <CatalogProps>{
 export default connect(
 	(state: MagazinState) => ({
 		title: 'hey',
-		prod: state.prod
+		prod: state.prod,
+		card: state.card
 	}),
 	dispatch => ({
-		// addCard: id => dispatch(addProdInOrder(id)),
-		// removeCard: id => dispatch(addProdInOrder(id))
+		addProdInCard: ( id: ProdId ) => dispatch(actionsAddProdInCard(id)),
+		removeProdInCard: ( id: ProdId ) => dispatch(actionsRemoveProdInCard(id))
 	})
 )(Catalog);

@@ -15,4 +15,4 @@ interface Catalog {prod: Prod[];}
 
 interface Card {prod: Prod[];}
 
-interface MagazinState extends Catalog,Card {card: Prod[];}
+interface MagazinState extends Catalog,Card {card: ProdId[];}
