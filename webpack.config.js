@@ -3,6 +3,7 @@ const
 	webpack = require('webpack'),
 	CleanWebpackPlugin = require('clean-webpack-plugin'),
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
+	ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	paths = {
 		src: path.resolve(__dirname, 'src'),
 		dist: path.resolve(__dirname, 'dist')
@@ -21,11 +22,26 @@ const
 		},
 		devtool: 'inline-source-map',
 		module:{
-			rules:[
-				{test: /\.tsx?$/, loader: 'ts-loader'},
+			loaders: [
+				{ test: /\.tsx?$/, loader: 'ts-loader' }
+			],
+			rules: [
+				{
+					test: /\.tsx?$/,
+					use: 'ts-loader',
+					exclude: /node_modules/
+				},
+				{
+					test: /\.sass$/,
+					use: ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+						use: [ 'css-loader', 'sass-loader' ]
+					})
+				}
 			]
 		},
 		plugins:[
+			new ExtractTextPlugin('app.css'),
 			new CleanWebpackPlugin(['dist']),
 			new HtmlWebpackPlugin({
 				template: './index.html'

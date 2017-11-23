@@ -17,7 +17,7 @@ class Catalog extends React.Component <CatalogProps>{
 		return (
 			<div>
 				<h1>Catalog {this.props.title}</h1>
-				<div>{this.props.prod.map( (prod: Prod) => <Card key={prod.id} {...prod} /> )}</div>
+				<div className="wr-card">{this.props.prod.map( (prod: Prod) => <Card key={prod.id} {...prod} /> )}</div>
 			</div>
 		);
 	}

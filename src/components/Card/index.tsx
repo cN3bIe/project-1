@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import './style.sass';
 
 interface CardProps extends Prod {
 	// addProdInOrder: () => void;
