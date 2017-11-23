@@ -2,8 +2,8 @@ import * as React from 'react';
 
 
 import { connect } from 'react-redux';
-import { addProdInOrder, removeProdInOrder } from '../actions';
-import Card from './Card';
+import { addProdInOrder, removeProdInOrder } from '../../actions';
+import Card from '../Card';
 
 interface CatalogProps {
 	title: string;
