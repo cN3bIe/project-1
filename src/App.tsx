@@ -15,8 +15,8 @@ export default class App extends React.Component<AppProps>{
 				<div>
 					<Header title={this.props.title}/>
 					<Switch>
-						<Route exact={true} path="/" component={Home} />
-						<Route path="/catalog" component={Catalog} />
+						<Route exact={true} path="/" component={Catalog} />
+						<Route path="/catalog" component={Home} />
 					</Switch>
 				</div>
 			</Router>

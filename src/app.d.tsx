@@ -1,7 +1,15 @@
 type ProdId = number | string;
 type ActionConst = string;
 
-interface Action {type: ActionConst;}
+interface ActionThunk {
+	(dispatch: any): void;
+}
+
+type TypeActionWithThunk = ActionConst | ActionThunk;
+
+interface Action {
+	type: TypeActionWithThunk;
+}
 interface ActionProd extends Action{prod: Prod;}
 interface ActionCard extends Action{id: ProdId;}
 
@@ -15,4 +23,7 @@ interface Catalog {prod: Prod[];}
 
 interface Card {prod: Prod[];}
 
-interface MagazinState extends Catalog,Card {card: ProdId[];}
+interface MagazinState extends Catalog,Card {
+	card: ProdId[];
+	fetching: boolean;
+}
